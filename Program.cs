@@ -160,6 +160,15 @@ void GetProductByType()
     }
 }
 
+void GetAvailableProducts()
+{
+    List<Inventory> unsoldInventories = inventories.Where(inv => inv.Available).ToList();
+    foreach (Inventory unsoldInventory in unsoldInventories)
+    {
+        Console.WriteLine($"{unsoldInventory.Name}, a {unsoldInventory.ProductType.Name} type product {(unsoldInventory.Available ? "is available" : "was sold") } for ${unsoldInventory.Price}");
+    }
+}
+
 string choice = null;
 while (choice != "0")
 {
@@ -169,7 +178,8 @@ while (choice != "0")
                         2. Add a product
                         3. Delete a product
                         4. Update a product
-                        5. Get product by type");
+                        5. Get product by type
+                        6. Show available products only");
     choice = Console.ReadLine();
     if (choice == "0")
     {
@@ -198,6 +208,11 @@ while (choice != "0")
     else if (choice == "5")
     {
         GetProductByType();
+        PressToContinue();
+    }
+    else if (choice == "6")
+    {
+        GetAvailableProducts();
         PressToContinue();
     }
 }
