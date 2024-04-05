@@ -29,7 +29,8 @@ List<Inventory> inventories = new List<Inventory>()
         Name = "Joe's robe of Schmoozing +3",
         Price = 11.11M,
         Available = true,
-        ProductType = productTypeIds[0] //this is object oriented programming in a server side course, but I didn't want to iterate through it eleventy-seven different times
+        ProductType = productTypeIds[0], //this is object oriented programming in a server side course, but I didn't want to iterate through it eleventy-seven different times
+        DateStocked = new DateTime(2024, 3, 15)
     },
 };
 
@@ -43,7 +44,8 @@ void PressToContinue()
 void ViewAllProducts()
 {
     foreach (Inventory inventory in inventories){
-        Console.WriteLine($"{inventory.Name}, a {inventory.ProductType.Name} type product {(inventory.Available ? "is available" : "was sold") } for ${inventory.Price}");
+        Console.WriteLine(@$"{inventory.Name}, a {inventory.ProductType.Name} type product {(inventory.Available ? "is available" : "was sold") } for ${inventory.Price}.
+        It has been on the shelf for {inventory.DaysOnShelf} days.");
     }
 }
 

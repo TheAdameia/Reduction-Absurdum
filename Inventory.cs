@@ -5,6 +5,14 @@ public class Inventory
     public bool Available { get; set;}
     public required ProductTypeId ProductType { get; set; }
     public DateTime DateStocked { get; set;}
+    public int DaysOnShelf
+    {
+        get
+        {
+            TimeSpan timeOnShelf = DateTime.Now - DateStocked;
+            return timeOnShelf.Days;
+        }
+    }
 }
 
 public class ProductTypeId
